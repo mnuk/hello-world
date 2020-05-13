@@ -12,3 +12,16 @@ GROUP BY time(5m), path
 
 
 select derivative(pointReq, 1s) from "write" where time > now() - 5m
+
+
+https://docs.influxdata.com/influxdb/v1.7/concepts/schema_and_data_layout/
+
+https://docs.influxdata.com/influxdb/v1.7/guides/hardware_sizing/#general-hardware-guidelines-for-a-single-node
+
+https://docs.influxdata.com/platform/monitoring/influxdata-platform/monitoring-dashboards/#monitor-influxdb-oss
+
+https://grafana.com/grafana/dashboards/10346
+
+https://grafana.com/docs/grafana/latest/administration/metrics/
+
+https://docs.influxdata.com/telegraf/v1.14/data_formats/input/
