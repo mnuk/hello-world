@@ -1,0 +1,14 @@
+SELECT
+     max(cacheAgeMs) / 1000.000 AS CacheAgeSeconds,
+     max(memBytes) AS MaxMemBytes, max(diskBytes) AS MaxDiskBytes,
+     max(snapshotCount) AS MaxSnapShotCount,
+     (last(cachedBytes) - first(cachedBytes)) / (last(WALCompactionTimeMs) - first(WALCompactionTimeMs)) - 1000.000 AS CompactedBytesPerSecond,
+     last(cachedBytes) AS CachedBytes,
+     (last(cachedBytes) - first(cachedBytes))/300 as CacheThroughputBytesPerSecond
+FROM _internal.monitor.tsm1_cache
+WHERE time > now() - 1h
+GROUP BY time(5m), path
+
+
+
+select derivative(pointReq, 1s) from "write" where time > now() - 5m
